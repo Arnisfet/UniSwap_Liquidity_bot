@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -22,6 +24,13 @@ public class TestEthConnection {
     }
     @Test
     public void getBalanceTest() {
-        uniService.getBalance();
+        BigDecimal value = uniService.getBalance();
+        assertNotNull(value);
+    }
+
+    @Test
+    public  void getARBbalance() {
+        BigDecimal val = uniService.getBalanceARB();
+        assertNotNull(val);
     }
 }
