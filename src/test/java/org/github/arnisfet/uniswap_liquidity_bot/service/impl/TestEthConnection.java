@@ -1,7 +1,7 @@
 package org.github.arnisfet.uniswap_liquidity_bot.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.github.arnisfet.uniswap_liquidity_bot.connections.service.impl.ARBConnectionService;
+import org.github.arnisfet.uniswap_liquidity_bot.networks.sepolia.service.ArbitrumService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Slf4j
 public class TestEthConnection {
     @Autowired
-    private ARBConnectionService uniService;
+    private ArbitrumService uniService;
 
     @Test
     public void testConnection () {

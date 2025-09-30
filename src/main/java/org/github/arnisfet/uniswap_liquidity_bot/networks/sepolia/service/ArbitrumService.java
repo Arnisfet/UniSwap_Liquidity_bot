@@ -1,7 +1,8 @@
-package org.github.arnisfet.uniswap_liquidity_bot.connections.service.impl;
+package org.github.arnisfet.uniswap_liquidity_bot.networks.sepolia.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.arnisfet.uniswap_liquidity_bot.connections.service.ConnectionInterface;
+import org.github.arnisfet.uniswap_liquidity_bot.networks.NetworkInterface;
 import org.github.arnisfet.uniswap_liquidity_bot.infrustructure.MetaMaskConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,21 +31,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
-public class ARBConnectionService implements ConnectionInterface {
+public class ArbitrumService implements NetworkInterface {
 
-    private final String HTTP_CONNECT;
     private final Web3j web3;
     private final MetaMaskConfig metaMaskConfig;
     private final Credentials credentials;
-
-    ARBConnectionService(@Value(value = "${infura.arbitrum}") String http,
-                         MetaMaskConfig metaMaskConfig) {
-        HTTP_CONNECT = http;
-        this.web3 = Web3j.build(new HttpService(HTTP_CONNECT));
-        this.metaMaskConfig = metaMaskConfig;
-        this.credentials = Credentials.create(metaMaskConfig.getPrivate_key());
-    }
 
     @Override
     public BigDecimal getBalance() {
