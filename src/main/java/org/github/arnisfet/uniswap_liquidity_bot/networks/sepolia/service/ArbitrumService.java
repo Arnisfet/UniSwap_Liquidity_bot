@@ -59,8 +59,7 @@ public class ArbitrumService implements NetworkInterface {
         }
     }
 
-    public BigDecimal getBalanceARB() {
-        String usdcAddr = "0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d";
+    public BigDecimal getBalanceARB(String tokenAddress) {
         Function function = new Function(
                 "balanceOf",
                 Arrays.asList(new Address(credentials.getAddress())),
@@ -72,7 +71,7 @@ public class ArbitrumService implements NetworkInterface {
 
         try {
             response  = web3.ethCall(
-                    Transaction.createEthCallTransaction(credentials.getAddress(), usdcAddr, encodedFunction),
+                    Transaction.createEthCallTransaction(credentials.getAddress(), tokenAddress, encodedFunction),
                     DefaultBlockParameterName.LATEST).send();
         } catch (IOException e) {
             throw new RuntimeException(e);

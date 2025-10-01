@@ -1,6 +1,7 @@
 package org.github.arnisfet.uniswap_liquidity_bot.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.github.arnisfet.uniswap_liquidity_bot.data.TokenData;
 import org.github.arnisfet.uniswap_liquidity_bot.networks.sepolia.service.ArbitrumService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestEthConnection {
     @Autowired
     private ArbitrumService uniService;
+    @Autowired
+    TokenData tokenData;
 
     @Test
     public void testConnection () {
@@ -30,7 +33,7 @@ public class TestEthConnection {
 
     @Test
     public  void getARBbalance() {
-        BigDecimal val = uniService.getBalanceARB();
+        BigDecimal val = uniService.getBalanceARB(tokenData.getSepolia().get("USDC"));
         assertNotNull(val);
     }
 }
